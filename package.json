@@ -1,0 +1,15 @@
+{
+    "name": "grpc_tuts",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "pb:gen": "powershell -ExecutionPolicy unrestricted ./scripts/gen.ps1 greet"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@grpc/grpc-js": "^1.9.13"
+    }
+}
