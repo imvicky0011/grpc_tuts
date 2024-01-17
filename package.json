@@ -6,7 +6,10 @@
     "scripts": {
         "pb:gen": "powershell -ExecutionPolicy unrestricted ./scripts/gen.ps1 greet",
         "greet:server": "node greet/server/index.js",
-        "greet:client": "node greet/client/index.js"
+        "greet:client": "node greet/client/index.js",
+        "calc:gen": "powershell -ExecutionPolicy unrestricted ./scripts/gen.ps1 calculator",
+        "calc:server": "node calculator/server/index.js",
+        "calc:client": "node calculator/client/index.js"
     },
     "keywords": [],
     "author": "",

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package calculator;
+
+message calculationRequest {
+  int64 first_num = 1;
+  int64 second_num = 2;
+}
+
+message calculationResponse {
+  int64 result = 1;
+}
+
+service calculatorService {
+    rpc sumAPI(calculationRequest) returns (calculationResponse);
+}
