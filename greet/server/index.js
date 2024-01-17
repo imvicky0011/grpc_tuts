@@ -1,6 +1,8 @@
 const grpc = require('@grpc/grpc-js')
+const service = require('../proto/greet_grpc_pb');
+const serviceImpl = require('./service_impl');
 
-const addr = 'localhost:50051'
+const addr = '0.0.0.0:50051'
 
 function cleanup(server) {
     console.log('Cleanup')
@@ -19,6 +21,8 @@ function main() {
         console.log("Caught Interrupt signal");
         cleanup(server)
     })
+
+    server.addService(service.GreetServiceService, serviceImpl);
 
     server.bindAsync(addr, creds, (err, _) => {
         if (err) {

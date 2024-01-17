@@ -5,12 +5,14 @@
     "main": "index.js",
     "scripts": {
         "pb:gen": "powershell -ExecutionPolicy unrestricted ./scripts/gen.ps1 greet",
-        "greet:server": "node greet/server/index.js"
+        "greet:server": "node greet/server/index.js",
+        "greet:client": "node greet/client/index.js"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@grpc/grpc-js": "^1.9.13"
+        "@grpc/grpc-js": "^1.9.13",
+        "google-protobuf": "^3.21.2"
     }
 }
