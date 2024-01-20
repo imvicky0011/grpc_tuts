@@ -30,3 +30,20 @@ exports.fetchPrime = async(call, _) => {
     }
     call.end()
 };
+
+
+exports.arraySum = async(call, callback) => {
+    console.log("Server side arraySum API function is inbvoked!")
+
+    let sum = 0;
+    call.on("data", (req) => {
+        sum += req.getFirstNum()
+        console.log(sum)
+    })
+
+    call.on("end", () => {
+        const res = new pb.calculationResponse().setResult(sum)
+
+        callback(null, res)
+    })
+};

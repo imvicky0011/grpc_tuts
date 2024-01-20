@@ -61,6 +61,17 @@ var calculatorServiceService = exports.calculatorServiceService = {
     responseSerialize: serialize_calculator_calculationResponse,
     responseDeserialize: deserialize_calculator_calculationResponse,
   },
+  arraySum: {
+    path: '/calculator.calculatorService/arraySum',
+    requestStream: true,
+    responseStream: false,
+    requestType: calculator_pb.singleNumberRequest,
+    responseType: calculator_pb.calculationResponse,
+    requestSerialize: serialize_calculator_singleNumberRequest,
+    requestDeserialize: deserialize_calculator_singleNumberRequest,
+    responseSerialize: serialize_calculator_calculationResponse,
+    responseDeserialize: deserialize_calculator_calculationResponse,
+  },
 };
 
 exports.calculatorServiceClient = grpc.makeGenericClientConstructor(calculatorServiceService);

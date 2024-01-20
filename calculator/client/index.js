@@ -20,17 +20,36 @@ async function getSum(client, x) {
 
 async function getPrimes(client, num) {
     console.log(`Get Primes has been invoked from the client side, num: ${num}`)
-
     try {
         const req = new singleNumberRequest().setFirstNum(num)
 
         const call = client.fetchPrime(req)
         call.on("data", (res) => {
             console.log(`GreetManyTime: ${res.getResult()}`)
+            sum += res.getResult()
         })
     } catch (err) {
         console.log(err)
     }
+
+}
+
+async function sendArray(client) {
+    console.log("arraySum was invoked by the client side!");
+
+    const call = client.arraySum((err, res) => {
+        if (err) {
+            console.log(err)
+        }
+        console.log(`LongGret: ${res.getResult()}`)
+    })
+
+    for (let i = 1; i <= 10; i++) {
+        const req = new singleNumberRequest().setFirstNum(i)
+        call.write(req)
+    }
+
+    call.end()
 }
 
 async function main() {
@@ -43,7 +62,10 @@ async function main() {
 
     // await getSum(client, 1)
 
-    getPrimes(client, 120)
+    // getPrimes(client, 120)
+
+    sendArray(client)
+
     client.close();
 }
 

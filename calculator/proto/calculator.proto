@@ -19,4 +19,5 @@ message calculationResponse {
 service calculatorService {
     rpc sumAPI(calculationRequest) returns (calculationResponse);
     rpc fetchPrime(singleNumberRequest) returns (stream calculationResponse);
+    rpc arraySum(stream singleNumberRequest) returns (calculationResponse);
 }
