@@ -26,6 +26,17 @@ function deserialize_calculator_calculationResponse(buffer_arg) {
   return calculator_pb.calculationResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_calculator_singleNumberRequest(arg) {
+  if (!(arg instanceof calculator_pb.singleNumberRequest)) {
+    throw new Error('Expected argument of type calculator.singleNumberRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_calculator_singleNumberRequest(buffer_arg) {
+  return calculator_pb.singleNumberRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 var calculatorServiceService = exports.calculatorServiceService = {
   sumAPI: {
@@ -36,6 +47,17 @@ var calculatorServiceService = exports.calculatorServiceService = {
     responseType: calculator_pb.calculationResponse,
     requestSerialize: serialize_calculator_calculationRequest,
     requestDeserialize: deserialize_calculator_calculationRequest,
+    responseSerialize: serialize_calculator_calculationResponse,
+    responseDeserialize: deserialize_calculator_calculationResponse,
+  },
+  fetchPrime: {
+    path: '/calculator.calculatorService/fetchPrime',
+    requestStream: false,
+    responseStream: true,
+    requestType: calculator_pb.singleNumberRequest,
+    responseType: calculator_pb.calculationResponse,
+    requestSerialize: serialize_calculator_singleNumberRequest,
+    requestDeserialize: deserialize_calculator_singleNumberRequest,
     responseSerialize: serialize_calculator_calculationResponse,
     responseDeserialize: deserialize_calculator_calculationResponse,
   },

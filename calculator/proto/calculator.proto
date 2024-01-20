@@ -7,10 +7,16 @@ message calculationRequest {
   int64 second_num = 2;
 }
 
+message singleNumberRequest {
+  int64 first_num = 1;
+}
+
 message calculationResponse {
   int64 result = 1;
 }
 
+
 service calculatorService {
     rpc sumAPI(calculationRequest) returns (calculationResponse);
+    rpc fetchPrime(singleNumberRequest) returns (stream calculationResponse);
 }

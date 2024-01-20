@@ -1,5 +1,5 @@
 const grpc = require('@grpc/grpc-js');
-const { calculationRequest } = require('../proto/calculator_pb');
+const { calculationRequest, singleNumberRequest } = require('../proto/calculator_pb');
 const { calculatorServiceClient } = require('../proto/calculator_grpc_pb');
 
 async function getSum(client, x) {
@@ -18,6 +18,21 @@ async function getSum(client, x) {
     });
 }
 
+async function getPrimes(client, num) {
+    console.log(`Get Primes has been invoked from the client side, num: ${num}`)
+
+    try {
+        const req = new singleNumberRequest().setFirstNum(num)
+
+        const call = client.fetchPrime(req)
+        call.on("data", (res) => {
+            console.log(`GreetManyTime: ${res.getResult()}`)
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 async function main() {
     const creds = grpc.ChannelCredentials.createInsecure();
 
@@ -26,10 +41,9 @@ async function main() {
         creds,
     );
 
-    await getSum(client, 1);
-    await getSum(client, 2);
-    await getSum(client, 3);
+    // await getSum(client, 1)
 
+    getPrimes(client, 120)
     client.close();
 }
 

@@ -31,6 +31,23 @@ function doGreetServerStream(client) {
     }
 }
 
+
+function doGreetServerStream(client) {
+    console.log("Server stream Greet caling from the client!")
+    try {
+
+        const req = new GreetRequest().setFirstName('Vicky')
+
+        const call = client.greetManyTimes(req)
+        call.on("data", (res) => {
+            console.log(`GreetManyTime: ${res.getResult()}`)
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+
 function main() {
     const creds = grpc.ChannelCredentials.createInsecure();
 
