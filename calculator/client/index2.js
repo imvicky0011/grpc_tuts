@@ -26,9 +26,9 @@ async function main() {
         creds,
     );
 
-    await getSum(client, 1);
-    await getSum(client, 2);
-    await getSum(client, 3);
+    await getSum(client, 4);
+    await getSum(client, 5);
+    await getSum(client, 6);
 
     client.close();
 }
